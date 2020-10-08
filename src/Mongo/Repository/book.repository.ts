@@ -18,6 +18,27 @@ export class BookRepository {
         return await this.bookModel.findById(bookId, { __v: false })
     }
 
+    async getBookByAuthorName(authorName: string[]): Promise<Book[]> {
+        return await this.bookModel.find({
+            $or: [
+                { 'author.name': { $in: authorName } },
+                {
+                    'author.surname': { $in: authorName }
+                }
+
+            ]
+        })
+    }
+
+    async getBookByName(bookName: string): Promise<Book[]> {
+        return await this.bookModel.find({
+            name: { '$regex': bookName, '$options': 'i' }
+        },
+            {
+                __v: false
+            })
+    }
+
     async updateBookById(bookId: string, newBook: BookDTO): Promise<Book> {
         return await this.bookModel.replaceOne({ __id: bookId }, newBook)
     }
