@@ -1,5 +1,5 @@
 import { BadGatewayException, BadRequestException, Injectable } from '@nestjs/common'
-import { BookDTO } from 'src/dto/boos.dto'
+import { BookDTO } from 'src/dto/books.dto'
 import { Book } from 'src/database/interfaces/book.interface'
 import { BookRepository } from 'src/database/repository/book.repository'
 
