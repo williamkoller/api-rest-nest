@@ -26,15 +26,35 @@ export class BooksService {
         }
     }
 
+    async getBookByAuthorName(authorName: string): Promise<Book[]> {
+        const splitedAuthorName = authorName.split(' ')
+
+        const foundBooks = await this.bookRepository.getBookByAuthorName(splitedAuthorName)
+
+        if (!foundBooks.length) throw new BadRequestException('No results for this author')
+
+        return foundBooks
+    }
+
+    async getBookByName(bookName: string): Promise<Book[]> {
+
+        const foundBooks = await this.bookRepository.getBookByName(bookName)
+
+        if (!foundBooks.length) throw new BadRequestException('No results for this name')
+
+        return foundBooks
+    }
+
+
     async updateBookById(bookId: string, newBook: BookDTO): Promise<Book> {
         const existBook = await this.bookRepository.getBookById(bookId)
         if (!existBook) throw new BadRequestException('There are no results with this id')
 
         const updatedBook = await this.bookRepository.updateBookById(bookId, newBook)
-        if (updatedBook) 
+        if (updatedBook)
             return this.bookRepository.getBookById(bookId)
-        else 
-            throw new BadRequestException('Error in updated book')    
+        else
+            throw new BadRequestException('Error in updated book')
     }
 
     async saveBook(newBook: BookDTO): Promise<Book> {
