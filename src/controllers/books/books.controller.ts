@@ -1,6 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common'
 import { Book } from 'src/Mongo/Interfaces/book.interface'
-import { BooksService } from 'src/Services/books/books.service'
+import { BooksService } from 'src/services/books/books.service'
 import { BookDTO } from './../../DTO/boos.dto'
 
 @Controller('books')

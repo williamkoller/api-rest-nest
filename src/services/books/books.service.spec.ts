@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing'
-import { BookRepository } from 'src/Mongo/Repository/book.repository'
+import { BookRepository } from 'src/database/repository/book.repository'
 import { BooksService } from './books.service'
 
 describe('BooksService', () => {

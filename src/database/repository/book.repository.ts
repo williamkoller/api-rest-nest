@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common'
 import { InjectModel } from '@nestjs/mongoose'
 import { Model } from 'mongoose'
-import { BookDTO } from 'src/DTO/boos.dto'
-import { Book } from '../Interfaces/book.interface'
+import { BookDTO } from 'src/dto/boos.dto'
+import { Book } from '../interfaces/book.interface'
 
 @Injectable()
 export class BookRepository {

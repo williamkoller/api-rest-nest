@@ -1,14 +1,14 @@
 import { Module } from '@nestjs/common'
-import { BooksController } from './Controllers/books/books.controller'
+import { BooksController } from './controllers/books/books.controller'
 import { MongooseModule } from '@nestjs/mongoose'
-import Configuration from './Config/Configuration'
-import { BooksService } from './Services/books/books.service'
-import { BookRepository } from './Mongo/Repository/book.repository'
-import { BookSchema } from './Mongo/Schemas/book.schema'
+import env from './config/env'
+import { BooksService } from './services/books/books.service'
+import { BookRepository } from './database/repository/book.repository'
+import { BookSchema } from './database/schemas/book.schema'
 
 @Module({
   imports: [
-    MongooseModule.forRoot(`${Configuration.mongoUri}`),
+    MongooseModule.forRoot(`${env.mongoUri}`),
     MongooseModule.forFeature([
       { name: 'books', schema: BookSchema }
     ])
